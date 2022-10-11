@@ -1,0 +1,54 @@
+'' this module is for formating returns exports from Sebastian's script
+
+Sub returns_formating()
+    ' Set up worksheets
+    
+    Dim workSheet1, workSheet2 As Worksheet
+    Set workSheet1 = Sheets(1)
+    Set workSheet2 = Sheets(2)
+    
+    
+    workSheet2.Rows(1).RowHeight = 30
+    workSheet2.Columns("A").ColumnWidth = 35
+    workSheet2.Columns("B").ColumnWidth = 30
+    workSheet2.Columns("C").ColumnWidth = 30
+    workSheet2.Range("A1:I1").Interior.ColorIndex = 1
+    workSheet2.Range("A1:I1").Font.Color = vbWhite
+    workSheet2.Range("A1:I1").Font.Bold = True
+    workSheet2.Range("A1:I1").Font.Size = 14
+    workSheet2.Columns("D:I").AutoFit
+    workSheet2.Columns("D:I").Hidden = True
+    
+    
+    workSheet2.Columns("K").ColumnWidth = 5
+    workSheet2.Columns("L").ColumnWidth = 5
+    workSheet2.Columns("M").ColumnWidth = 5
+    workSheet2.Columns("N").ColumnWidth = 5
+    workSheet2.Cells(1, 11) = "=MONTH(TODAY())"
+    workSheet2.Cells(1, 12) = "=DAY(TODAY())"
+    workSheet2.Cells(1, 13) = "=HOUR(NOW())"
+    workSheet2.Cells(1, 14) = "=MINUTE(NOW())"
+    workSheet2.Columns("K:N").Hidden = True
+    
+    
+    ' setting up btn
+    workSheet2.Columns("J").ColumnWidth = 25
+    
+    Dim btn As Button
+    Application.ScreenUpdating = False
+    
+    Dim placement As Range
+    
+    Set placement = workSheet2.Range(Cells(1, 10), Cells(1, 10))
+    Set btn = workSheet2.Buttons.Add(placement.Left, placement.Top, placement.Width, placement.Height)
+    
+    btn.Caption = "Acabado"
+    btn.OnAction = "save_files.save_files"
+    
+    
+    workSheet2.Range("A:B").Locked = False
+    workSheet2.Protect Password:=""
+    
+    
+End Sub
+
